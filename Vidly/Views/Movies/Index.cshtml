@@ -4,17 +4,23 @@
     ViewBag.Title = "Movies";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Customers</h2>
+
+<h2>Movie Listing</h2>
+
+@Html.ActionLink("New Movie", "New", "Movies", null, new { @class = "btn btn-primary btn-lg" })
+
 @if (!Model.Any())
 {
     <p>We don't have any movie titles.</p>
 }
 else
 {
+    <br />
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
-                <th>Movies</th>
+                <th>Movie</th>
+                <th>Genre</th>
             </tr>
         </thead>
         <tbody>
@@ -22,6 +28,7 @@ else
             {
                 <tr>
                     <td>@Html.ActionLink(movie.Name, "Details", "Movies", new { id = movie.Id }, null)</td>
+                    <td>@movie.Genre.GenreName</td>
                 </tr>
             }
         </tbody>
